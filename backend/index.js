@@ -42,7 +42,7 @@ const User = mongoose.model("User", {
   email: String,
   password: String,
   verified: { type: Boolean, default: false },
-  verifyToken: String,
+  Token: String,
   resetToken: String
 });
 
@@ -75,7 +75,7 @@ const auth = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, SECRET);
+    const decoded = jwt.(token, SECRET);
     req.user = decoded;
     next();
   } catch (err) {
@@ -120,7 +120,7 @@ app.post("/register", async (req, res) => {
     if (exist) return res.send({ message: "username หรือ email ซ้ำ" });
 
     const hash = await bcrypt.hash(password, 10);
-    const verifyToken = jwt.sign({ email }, VERIFY_SECRET, { expiresIn: "1h" });
+    const Token = jwt.sign({ email }, _SECRET, { expiresIn: "1h" });
 
     const user = new User({ username, email, password: hash, verifyToken });
     await user.save();
