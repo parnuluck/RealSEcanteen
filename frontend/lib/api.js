@@ -3,9 +3,8 @@ import axios from "axios";
 const API = process.env.NEXT_PUBLIC_API_URL;
 
 const api = axios.create({
-  baseURL: API
+  baseURL: "https://realsecanteen-3.onrender.com"
 });
-
 // 🔥 ใส่ token อัตโนมัติทุก request
 api.interceptors.request.use(config => {
   const token = localStorage.getItem("token");
