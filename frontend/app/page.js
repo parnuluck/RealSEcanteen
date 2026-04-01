@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
+axios.defaults.baseURL = "https://YOUR-BACKEND.onrender.com";
+
 export default function Home() {
   const [tables, setTables] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
