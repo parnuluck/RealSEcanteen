@@ -9,7 +9,7 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(cors({
-  origin: "https://realsecanteen-frontend.onrender.com"
+  origin: "https://realsecanteen-1.onrender.com"
 }));
 app.use(express.json());
 
