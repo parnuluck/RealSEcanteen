@@ -277,7 +277,7 @@ export default function Home() {
       </div>
 
       {timeLeft !== null && (
-        <div className="text-center text-red-600 font-bold mb-3">
+        <div className="text-right text-red-600 font-bold mb-3">
           ⏳ เหลือเวลา {Math.floor(timeLeft / 60)}:
           {(timeLeft % 60).toString().padStart(2, "0")}
         </div>
@@ -391,13 +391,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
-      /*<button
-        onClick={myQueue}
-        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-      >
-        Check Queue
-      </button>*/
 
       <button
         onClick={startScan}
