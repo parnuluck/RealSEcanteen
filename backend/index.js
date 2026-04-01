@@ -128,6 +128,8 @@ app.post("/register", async (req, res) => {
     // ✅ Link points to backend /verify route (not localhost)
     const link = `${BACKEND_URL}/verify/${verifyToken}`;
 
+    console.log("VERIFY LINK:", link);
+
     try {
       await transporter.sendMail({
         to: email,
