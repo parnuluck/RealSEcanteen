@@ -21,7 +21,7 @@ const BACKEND_URL   = process.env.BACKEND_URL;  // your backend Render URL
 
 // ================== MIDDLEWARE ==================
 app.use(cors({
-  origin: CLIENT_URL,
+  origin: ['https://realsecanteen-4.onrender.com'],
   credentials: true
 }));
 app.use(express.json());
