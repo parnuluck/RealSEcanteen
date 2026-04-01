@@ -105,7 +105,7 @@ let assignedQueue = [];
 });
 
 // ================== REGISTER ==================
-app.post("/api/register", async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
     const { username, email, password, confirmPassword } = req.body;
 
