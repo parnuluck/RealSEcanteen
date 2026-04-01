@@ -61,7 +61,7 @@ export default function Home() {
 
   const loadTables = async () => {
   try {
-    const res = await axios.get("http://localhost:4000/tables", {
+    const res = await axios.get("https://realsecanteen-production.up.railway.app/tables", {
       headers: {
         Authorization: localStorage.getItem("token")
       }
@@ -94,7 +94,7 @@ export default function Home() {
 
   const loadQueue = async () => {
   try {
-    const res = await axios.get("http://localhost:4000/queue", {
+    const res = await axios.get("https://realsecanteen-production.up.railway.app/queue", {
       headers: {
          Authorization: localStorage.getItem("token")
       }
@@ -109,7 +109,7 @@ const loadMyQueue = async () => {
   try {
 
     const res = await axios.get(
-      "http://localhost:4000/myQueue",
+      "https://realsecanteen-production.up.railway.app/myQueue",
       {
         headers:{
           Authorization: localStorage.getItem("token")
@@ -137,7 +137,7 @@ const loadMyQueue = async () => {
 
 const leaveTable = async (tableId) => {
   try {
-    const res = await axios.post("http://localhost:4000/leave",{ 
+    const res = await axios.post("https://realsecanteen-production.up.railway.app/leave",{ 
       tableId: tableId },
       {
         headers: {
@@ -198,13 +198,13 @@ const SHOP_LNG = 100.514573;
         SHOP_LNG
       );
 
-    if (distance > 1000) {
+    if (distance > 350) {
         alert("อยู่นอกระยะ 350 เมตร");
         return;
       }
 
       const res = await axios.post(
-        "http://localhost:4000/reserve",
+        "https://realsecanteen-production.up.railway.app/reserve",
         {
           people,
           lat,
@@ -246,7 +246,7 @@ const SHOP_LNG = 100.514573;
       async (decodedText) => {
         try {
           const res = await axios.post(
-            "http://localhost:4000/scan",
+            "https://realsecanteen-production.up.railway.app/scan",
             { tableId: decodedText },
             {
               headers: {
@@ -277,7 +277,7 @@ const SHOP_LNG = 100.514573;
 };
 
   const callQueue = async () => {
-  const res = await axios.post("http://localhost:4000/callQueue");
+  const res = await axios.post("https://realsecanteen-production.up.railway.app/callQueue");
   alert(res.data.message);
 
   loadQueue();
