@@ -81,9 +81,7 @@ export default function Home() {
 
       setTables(res.data);
 
-      const myTable = Array.isArray(tables)
-  ? tables.find(t => t.myTable)
-  : null;;
+      const myTable = res.data.find(t => t.myTable);
       if (myTable && myTable.status === "BLUE" && myTable.reservedAt) {
         const now = Date.now();
         const left = Math.floor((myTable.reservedAt + 300000 - now) / 1000);
