@@ -62,6 +62,7 @@ const transporter = nodemailer.createTransport({
 
 // ================== AUTH MIDDLEWARE ==================
 const auth = (req, res, next) => {
+  console.log("👉 HIT AUTH");
   console.log("HEADER:", req.headers.authorization);
   const token = req.headers.authorization;
   if (!token) return res.send({ message: "no token" });
