@@ -17,6 +17,10 @@ export default function Home() {
   const [username, setUsername] = useState("User");
 
   useEffect(() => {
+    loadTables();
+    loadQueue();
+    loadMyQueue();
+
   const interval1 = setInterval(() => {
     loadTables();
     loadQueue();
