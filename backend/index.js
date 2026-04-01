@@ -220,7 +220,7 @@ app.post("/reset/:token", async (req, res) => {
 });
 
 // ================== LOCK TABLE ==================
-app.post("/lockTable", auth, (req, res) => {
+app.post("/api/lockTable", auth, (req, res) => {
   const { tableId } = req.body;
   const userId = req.user.id;
 
@@ -237,7 +237,7 @@ app.post("/lockTable", auth, (req, res) => {
 });
 
 // ================== GET TABLES ==================
-app.get("/tables", auth, (req, res) => {
+app.get("/api/tables", auth, (req, res) => {
   const userId = req.user.id;
 
   const result = tables.map(t => ({
@@ -271,7 +271,7 @@ app.post("/scan", auth, (req, res) => {
 });
 
 // ================== RESERVE TABLE ==================
-app.post("/reserve", auth, (req, res) => {
+app.post("/api/reserve", auth, (req, res) => {
   try {
     const { people, tableId } = req.body;
     const userId = req.user.id;
@@ -394,7 +394,7 @@ app.post("/callQueue", (req, res) => {
 });
 
 // ================== MY QUEUE POSITION ==================
-app.get("/myQueue", auth, (req, res) => {
+app.get("/api/myQueue", auth, (req, res) => {
   const userId = req.user.id;
 
   const assigned = assignedQueue.find(a => a.userId === userId);
@@ -415,7 +415,7 @@ app.get("/myQueue", auth, (req, res) => {
 });
 
 // ================== GET QUEUE ==================
-app.get("/queue", auth, (req, res) => {
+app.get("/api/queue", auth, (req, res) => {
   res.send(queue);
 });
 
