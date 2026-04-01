@@ -393,7 +393,7 @@ export default function Home() {
       </div>
 
       <button
-        onClick={callQueue}
+        onClick={myQueue}
         className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
       >
         Check Queue
