@@ -15,10 +15,14 @@ export default function Home() {
   const [username, setUsername] = useState("User");
 
   // โหลดข้อมูลเมื่อ component mount
-  useEffect(() => {
-    loadTables();
-    loadQueue();
-    loadMyQueue();
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+    
+      if (!token) return; // ✅ เพิ่มบรรทัดนี้
+    
+      loadTables();
+      loadQueue();
+      loadMyQueue();
 
     const interval1 = setInterval(() => {
       loadTables();
