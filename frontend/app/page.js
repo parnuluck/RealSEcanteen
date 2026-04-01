@@ -224,6 +224,14 @@ export default function Home() {
       <div className="bg-orange-500 h-16 mb-4 flex items-center justify-between px-4 text-white rounded" style={{position: "relative"}}>
         <div className="font-bold">Canteen Queue</div>
         
+        {timeLeft !== null ? (
+          <div style={{ fontWeight: "bold", fontSize: "14px" }}>
+            ⏳ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, "0")}
+          </div>
+        ) : (
+          <div /> 
+        )}
+        
         <div style={{ position: "relative" }}>
           <button
             onClick={() => setShowUserMenu(prev => !prev)}
@@ -275,13 +283,6 @@ export default function Home() {
           )}
         </div>
       </div>
-
-      {timeLeft !== null && (
-        <div className="text-right text-red-600 font-bold mb-3">
-          ⏳ เหลือเวลา {Math.floor(timeLeft / 60)}:
-          {(timeLeft % 60).toString().padStart(2, "0")}
-        </div>
-      )}
 
       {/* LEGEND */}
       <div style={{
