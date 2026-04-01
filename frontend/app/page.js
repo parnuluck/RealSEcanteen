@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-axios.defaults.baseURL = "https://YOUR-BACKEND.onrender.com";
+axios.defaults.baseURL = "https://realsecanteen-1.onrender.com";
 
 export default function Home() {
   const [tables, setTables] = useState([]);
