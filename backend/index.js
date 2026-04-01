@@ -64,11 +64,14 @@ const transporter = nodemailer.createTransport({
 const auth = (req, res, next) => {
   console.log("👉 HIT AUTH");
   console.log("HEADER:", req.headers.authorization);
-  
-  const token = req.headers.authorization;
-  if (!authHeader) return res.send({ message: "no token" });
 
-  // 🔥 แยก Bearer ออก
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.send({ message: "no token" });
+  }
+
+  // 🔥 เอา Bearer ออก
   const token = authHeader.split(" ")[1];
 
   try {
