@@ -45,7 +45,7 @@ export default function Reset() {
 
   const reset = async () => {
     try {
-      const res = await axios.post(`http://localhost:4000/reset/${token}`, {
+      const res = await axios.post(`https://realsecanteen-1.onrender.com/reset/${token}`, {
         password,
         confirmPassword,
       });
