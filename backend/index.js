@@ -26,12 +26,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const token = jwt.sign(
-  { id: user._id },
-  process.env.JWT_SECRET,
-  { expiresIn: "1d" }
-);
-
 // ================== TEST ==================
 app.get("/", (req, res) => {
   res.send("API running ✅");
@@ -70,13 +64,19 @@ const transporter = nodemailer.createTransport({
 const auth = (req, res, next) => {
   console.log("👉 HIT AUTH");
   console.log("HEADER:", req.headers.authorization);
+  
   const token = req.headers.authorization;
-  if (!token) return res.send({ message: "no token" });
+  if (!authHeader) return res.send({ message: "no token" });
+
+  // 🔥 แยก Bearer ออก
+  const token = authHeader.split(" ")[1];
+
   try {
     const decoded = jwt.verify(token, SECRET);
     req.user = decoded;
     next();
-  } catch {
+  } catch (err) {
+    console.log("JWT ERROR:", err.message);
     res.send({ message: "token ไม่ถูกต้อง" });
   }
 };
