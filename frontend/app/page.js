@@ -405,7 +405,7 @@ const myTable = tables.find(t => t.myTable);
           if (showPopup) return;
           if (t.myTable) { leaveTable(t.id); return; }
           if (t.status === "GREEN" || t.status === "YELLOW") {
-            axios.post("http://localhost:4000/lockTable", { tableId: t.id }, {
+            axios.get("https://realsecanteen-production.up.railway.app/tables", { tableId: t.id }, {
               headers: { Authorization: localStorage.getItem("token") }
             }).then(res => {
               if (res.data.success) setSelectedTable(t.id);
