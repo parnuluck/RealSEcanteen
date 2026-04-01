@@ -61,7 +61,7 @@ export default function Home() {
 
   const loadTables = async () => {
   try {
-    const res = await axios.get("https://realsecanteen-production.up.railway.app/tables", {
+    const res = await axios.get("/tables", {
       headers: {
         Authorization: localStorage.getItem("token")
       }
@@ -94,7 +94,7 @@ export default function Home() {
 
   const loadQueue = async () => {
   try {
-    const res = await axios.get("https://realsecanteen-production.up.railway.app/queue", {
+    const res = await axios.get("/queue", {
       headers: {
          Authorization: localStorage.getItem("token")
       }
@@ -109,7 +109,7 @@ const loadMyQueue = async () => {
   try {
 
     const res = await axios.get(
-      "https://realsecanteen-production.up.railway.app/myQueue",
+      "/myQueue",
       {
         headers:{
           Authorization: localStorage.getItem("token")
@@ -137,7 +137,7 @@ const loadMyQueue = async () => {
 
 const leaveTable = async (tableId) => {
   try {
-    const res = await axios.post("https://realsecanteen-production.up.railway.app/leave",{ 
+    const res = await axios.post("/leave",{ 
       tableId: tableId },
       {
         headers: {
@@ -204,7 +204,7 @@ const SHOP_LNG = 100.514573;
       }
 
       const res = await axios.post(
-        "https://realsecanteen-production.up.railway.app/reserve",
+        "/reserve",
         {
           people,
           lat,
@@ -246,7 +246,7 @@ const SHOP_LNG = 100.514573;
       async (decodedText) => {
         try {
           const res = await axios.post(
-            "https://realsecanteen-production.up.railway.app/scan",
+            "/scan",
             { tableId: decodedText },
             {
               headers: {
@@ -277,7 +277,7 @@ const SHOP_LNG = 100.514573;
 };
 
   const callQueue = async () => {
-  const res = await axios.post("https://realsecanteen-production.up.railway.app/callQueue");
+  const res = await axios.post("/callQueue");
   alert(res.data.message);
 
   loadQueue();
