@@ -105,7 +105,7 @@ let assignedQueue = [];
 });
 
 // ================== REGISTER ==================
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   try {
     const { username, email, password, confirmPassword } = req.body;
 
@@ -148,7 +148,7 @@ app.post("/register", async (req, res) => {
 });
 
 // ================== VERIFY ==================
-app.get("/verify/:token", async (req, res) => {
+app.get("/api/verify/:token", async (req, res) => {
   try {
     const decoded = jwt.verify(req.params.token, VERIFY_SECRET);
     const user = await User.findOne({ email: decoded.email });
@@ -185,7 +185,7 @@ app.post("/login", async (req, res) => {
 });
 
 // ================== FORGOT PASSWORD ==================
-app.post("/forget", async (req, res) => {
+app.post("/api/forget", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.send({ message: "ไม่พบ email" });
 
@@ -206,7 +206,7 @@ app.post("/forget", async (req, res) => {
 });
 
 // ================== RESET PASSWORD ==================
-app.post("/reset/:token", async (req, res) => {
+app.post("/api/reset/:token", async (req, res) => {
   try {
     const token = decodeURIComponent(req.params.token);
     const decoded = jwt.verify(token, RESET_SECRET);
@@ -266,7 +266,7 @@ app.get("/api/tables", auth, (req, res) => {
 });
 
 // ================== SCAN QR ==================
-app.post("/scan", auth, (req, res) => {
+app.post("/api/scan", auth, (req, res) => {
   const { tableId } = req.body;
 
   let table = tables.find(t => t.id === tableId);
@@ -337,7 +337,7 @@ app.post("/api/reserve", auth, (req, res) => {
 });
 
 // ================== LEAVE TABLE ==================
-app.post("/leave", auth, (req, res) => {
+app.post("/api/leave", auth, (req, res) => {
   const { tableId } = req.body;
 
   let table = tables.find(t => t.id === tableId);
@@ -398,7 +398,7 @@ setInterval(() => {
 }, 5000);
 
 // ================== CALL QUEUE ==================
-app.post("/callQueue", (req, res) => {
+app.post("/api/callQueue", (req, res) => {
   if (queue.length === 0) return res.send({ message: "ไม่มีคิว" });
   const next = queue.shift();
   res.send({ message: `เรียกคิว ${next.people} คน` });
