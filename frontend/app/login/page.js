@@ -18,6 +18,7 @@ export default function Login() {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify({ name: res.data.username }));
+        console.log(res.data);
         router.push("/");
       } else {
         alert(res.data.message);
