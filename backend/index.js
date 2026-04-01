@@ -150,7 +150,7 @@ app.post("/register", async (req, res) => {
 });
 
 // ================== VERIFY ==================
-app.get("/api/verify/:token", async (req, res) => {
+app.get("/verify/:token", async (req, res) => {
   try {
     const decoded = jwt.verify(req.params.token, VERIFY_SECRET);
     const user = await User.findOne({ email: decoded.email });
