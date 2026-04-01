@@ -68,9 +68,18 @@ export default function Home() {
   const loadTables = async () => {
     try {
       const res = await api.get("/tables");
+
+        // ❗ กันพัง
+      if (!Array.isArray(res.data)) {
+        console.log("tables not ready:", res.data);
+        return;
+      }
+
       setTables(res.data);
 
-      const myTable = res.data.find(t => t.myTable);
+      const myTable = Array.isArray(tables)
+  ? tables.find(t => t.myTable)
+  : null;;
       if (myTable && myTable.status === "BLUE" && myTable.reservedAt) {
         const now = Date.now();
         const left = Math.floor((myTable.reservedAt + 300000 - now) / 1000);
@@ -305,7 +314,7 @@ export default function Home() {
 
       {/* TABLE GRID */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(17, 1fr)", gap: "6px", padding: "8px" }}>  
-        {tables.map((t) => {
+        {Array.isArray(tables) && tables.map((t) => {
           const bgColor = 
             t.status === "RED"    ? "#ef4444"
             : t.status === "YELLOW" ? "#eab308"
