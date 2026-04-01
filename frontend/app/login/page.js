@@ -14,7 +14,7 @@ export default function Login() {
 
   const login = async () => {
     try {
-      const res = await axios.post("https://realsecanteen-1.onrender.com/login", { iden, password });
+      const res = await axios.post("https://realsecanteen-3.onrender.com/login", { iden, password });
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify({ name: res.data.username }));
