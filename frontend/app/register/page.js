@@ -60,11 +60,18 @@ export default function Register() {
         password,
         confirmPassword: confirm,
       });
+      console.log("RESPONSE:", res.data);
       alert(res.data.message);
 
-      if (res.data.message === "สมัครสำเร็จ เช็ค email") {
+      /*if (res.data.message === "สมัครสำเร็จ เช็ค email") {
         router.push("/login");
-      }
+      }*/
+      if (
+      res.data.message === "สมัครสำเร็จ เช็ค email" ||
+      res.data.message === "สมัครสำเร็จ แต่ส่ง email ไม่ได้"
+    ) {
+      router.push("/login");
+    }
     } catch (err) {
       alert("Register failed");
     }
