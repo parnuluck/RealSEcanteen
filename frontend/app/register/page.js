@@ -54,7 +54,7 @@ export default function Register() {
 
   const register = async () => {
     try {
-      const res = await axios.post("https://realsecanteen-1.onrender.com/register", {
+      const res = await axios.post("https://realsecanteen-3.onrender.com/register", {
         username,
         email,
         password,
