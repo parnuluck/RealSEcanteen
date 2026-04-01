@@ -8,7 +8,9 @@ const nodemailer = require("nodemailer");
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://YOUR-FRONTEND.onrender.com"
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -92,7 +94,7 @@ app.post("/register", async (req, res) => {
 
     await user.save();
 
-    const link = `http://localhost:4000/verify/${verifyToken}`;
+    const link = `https://YOUR-BACKEND.onrender.com/verify/${verifyToken}`;
 
     // 🔥 ครอบตรงนี้
     try {
@@ -143,7 +145,7 @@ app.get("/verify/:token", async (req, res) => {
     console.log("UPDATED:", user);
 
     //res.send("verify สำเร็จ");
-    res.redirect("http://localhost:3000/login");
+    res.redirect("https://YOUR-FRONTEND.onrender.com/login");
 
   } catch (err) {
     console.log("VERIFY ERROR:", err);
@@ -190,7 +192,7 @@ app.post("/forget", async (req, res) => {
   user.resetToken = resetToken;
   await user.save();
 
-  const link = `http://localhost:3000/reset/${resetToken}`;
+  const link = `https://YOUR-FRONTEND.onrender.com/reset/${resetToken}`;
 
   await transporter.sendMail({
     to: user.email,
