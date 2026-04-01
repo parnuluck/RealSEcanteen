@@ -4,8 +4,7 @@ import axios from "axios";
 import { API } from "@/lib/api";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-axios.defaults.baseURL = "https://realsecanteen-1.onrender.com";
-
+const res = await axios.get(`${API}/tables`);
 export default function Home() {
   const [tables, setTables] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -70,11 +69,14 @@ export default function Home() {
   try {
     const token = localStorage.getItem("token");
     
-    const res = await axios.get(`${API}/tables`, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    axios.post(`${API}/lockTable`, 
+      { tableId: t.id },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
-    });
+    )
     console.log("myQueue response:", res.data);
 
     setTables(res.data);
@@ -153,7 +155,7 @@ const leaveTable = async (tableId) => {
       tableId: tableId },
       {
         headers: {
-          Authorization: localStorage.getItem("token")
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       }
     );
@@ -225,7 +227,7 @@ const SHOP_LNG = 100.514573;
         },
         {
           headers: {
-            Authorization: localStorage.getItem("token")
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           }
         }
       );
@@ -262,7 +264,7 @@ const SHOP_LNG = 100.514573;
             { tableId: decodedText },
             {
               headers: {
-                Authorization: localStorage.getItem("token")
+                Authorization: `Bearer ${localStorage.getItem("token")}`
               }
             }
           );
@@ -289,7 +291,11 @@ const SHOP_LNG = 100.514573;
 };
 
   const callQueue = async () => {
-  const res = await axios.post("/callQueue");
+  const res = await axios.post("/callQueue", {}, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`
+  }
+});
   alert(res.data.message);
 
   loadQueue();
