@@ -126,7 +126,7 @@ app.post("/register", async (req, res) => {
     await user.save();
 
     // ✅ Link points to backend /verify route (not localhost)
-    const link = `${BACKEND_URL}/verify/${verifyToken}`;
+    const link = `${BACKEND_URL}verify/${verifyToken}`;
 
     console.log("VERIFY LINK:", link);
 
