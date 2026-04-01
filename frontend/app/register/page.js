@@ -22,15 +22,23 @@ const EyeClosed = () => (
 
 const PasswordInput = ({ placeholder, onChange }) => {
   const [show, setShow] = useState(false);
+
   return (
     <div className="flex items-center gap-2 w-64">
+      {/* input */}
       <input
         placeholder={placeholder}
         type={show ? "text" : "password"}
         onChange={onChange}
-        className="border rounded-full px-4 py-2 w-full outline-none focus:border-orange-500"
+        className="border rounded-full px-4 py-2 flex-1 outline-none focus:border-orange-500"
       />
-      <button type="button" onClick={() => setShow(!show)} className="p-2 text-gray-600">
+
+      {/* eye button อยู่นอก */}
+      <button
+        type="button"
+        onClick={() => setShow(!show)}
+        className="text-gray-500"
+      >
         {show ? <EyeOpen /> : <EyeClosed />}
       </button>
     </div>
