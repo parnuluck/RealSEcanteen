@@ -26,6 +26,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const token = jwt.sign(
+  { id: user._id },
+  process.env.JWT_SECRET,
+  { expiresIn: "1d" }
+);
+
 // ================== TEST ==================
 app.get("/", (req, res) => {
   res.send("API running ✅");
