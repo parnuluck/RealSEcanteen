@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API } from "@/lib/api";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 axios.defaults.baseURL = "https://realsecanteen-1.onrender.com";
@@ -67,9 +68,11 @@ export default function Home() {
 
   const loadTables = async () => {
   try {
-    const res = await axios.get("/tables", {
+    const token = localStorage.getItem("token");
+    
+    const res = await axios.get(`${API}/tables`, {
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: `Bearer ${token}`
       }
     });
     console.log("myQueue response:", res.data);
@@ -100,9 +103,11 @@ export default function Home() {
 
   const loadQueue = async () => {
   try {
-    const res = await axios.get("/queue", {
+    const token = localStorage.getItem("token");
+    
+    const res = await axios.get(`${API}/queue`, {
       headers: {
-         Authorization: localStorage.getItem("token")
+         Authorization: `Bearer ${token}`
       }
     });
     setQueue(res.data);
@@ -113,12 +118,13 @@ export default function Home() {
 
 const loadMyQueue = async () => {
   try {
-
+    const token = localStorage.getItem("token");
+    
     const res = await axios.get(
-      "/myQueue",
+      `${API}/myQueue`,
       {
         headers:{
-          Authorization: localStorage.getItem("token")
+          Authorization: `Bearer ${token}`
         }
       }
     );
@@ -411,8 +417,9 @@ const myTable = tables.find(t => t.myTable);
           if (showPopup) return;
           if (t.myTable) { leaveTable(t.id); return; }
           if (t.status === "GREEN" || t.status === "YELLOW") {
-            axios.get("/tables", { tableId: t.id }, {
-              headers: { Authorization: localStorage.getItem("token") }
+            const token = localStorage.getItem("token");
+            axios.get(`${API}/tables`, { tableId: t.id }, {
+              headers: { Authorization: `Bearer ${token}` }
             }).then(res => {
               if (res.data.success) setSelectedTable(t.id);
               else alert(res.data.message);
