@@ -120,7 +120,7 @@ app.post("/register", async (req, res) => {
     if (exist) return res.send({ message: "username หรือ email ซ้ำ" });
 
     const hash = await bcrypt.hash(password, 10);
-    const Token = jwt.sign({ email }, _SECRET, { expiresIn: "1h" });
+    const verifyToken = jwt.sign({ email }, _SECRET, { expiresIn: "1h" });
 
     const user = new User({ username, email, password: hash, verifyToken });
     await user.save();
