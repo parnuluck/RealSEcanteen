@@ -275,8 +275,8 @@ app.post("/api/scan", auth, (req, res) => {
   if (!table) return res.send({ message: "ไม่พบโต๊ะ" });
   if (!table.userIds.includes(req.user.id))
     return res.send({ message: "นี่ไม่ใช่โต๊ะของคุณ" });
-  if (table.status !== "RESERVED")
-    return res.send({ message: "โต๊ะนี้ไม่ได้อยู่ในสถานะจอง" });
+  //if (table.status !== "RESERVED")
+   // return res.send({ message: "โต๊ะนี้ไม่ได้อยู่ในสถานะจอง" });
 
   table.status = "CONFIRMED";
   table.reservedAt = null;
