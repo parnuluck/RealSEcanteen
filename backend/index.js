@@ -122,7 +122,7 @@ app.post("/register", async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const verifyToken = jwt.sign({ email }, _SECRET, { expiresIn: "1h" });
 
-    const user = new User({ username, email, password: hash, verifyToken });
+    const user = new User({ username, email, password: hash, Token: verifyToken });
     await user.save();
 
     // ✅ Link points to backend /verify route (not localhost)
