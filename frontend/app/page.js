@@ -165,7 +165,7 @@ export default function Home() {
         const lng = pos.coords.longitude;
 
         const distance = getDistanceInMeters(lat, lng, SHOP_LAT, SHOP_LNG);
-        if (distance > 100000) {
+        if (distance > 350) {
           alert("อยู่นอกระยะ 350 เมตร");
           return;
         }
