@@ -89,8 +89,8 @@ let tables = [];
 let queue = [];
 let assignedQueue = [];
 
-"ABCDEFGHIJ".split("").forEach(r => {
-  for (let i = 1; i <= 17; i++) {
+"A".split("").forEach(r => {
+  for (let i = 1; i <= 3; i++) {
     tables.push({
       id: r + i,
       people: 0,
